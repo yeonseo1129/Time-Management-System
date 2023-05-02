@@ -11,21 +11,33 @@ public class TimeManager {
 	}
 
 	public void addtodolist() {
-		Time time = new Time();
-		
-		System.out.print("priority:");
-		time.priority = input.nextInt();
-		input.nextLine();
-		
-		System.out.print("todo:");
-		time.todo = input.nextLine();
-		
-		System.out.print("deadline:");
-		time.deadline = input.nextLine();
-		
-		System.out.print("memo:");
-		time.memo = input.nextLine();
-		times.add(time);
+		int kind = 0;
+		Time priority;
+		while (kind != 1 && kind !=2) {
+		System.out.print("1 for Night:");
+		System.out.print("2 for Dinner:");
+		System.out.print("Select num for Todo Kind between 1 and 2:");
+		kind = input.nextInt();
+		if (kind == 1) {
+			priority = new Time();
+			priority.getUserInput(input);
+			times.add(priority);
+			break;
+			
+		}
+		else if (kind ==2) {
+			priority = new Dinnertime();
+			priority.getUserInput(input);
+			times.add(priority);
+			break;
+
+		}
+		else {
+			System.out.print("Select num for Todo Kind between 1 and 2:");
+		}
+		}
+	
+	
 	}
 	
 	public void deletetodolist() {
@@ -33,11 +45,12 @@ public class TimeManager {
 		int priority = input.nextInt();
 		int index = -1 ;
 		for (int i=0; i<times.size(); i++) {
-			if (times.get(i).priority == priority) {
+			if (times.get(i).getPriority() == priority) {
 				index = i;
 				break;
 			}
 		}
+		
 		
 		if (index >= 0) {
 			times.remove(index);
@@ -47,6 +60,7 @@ public class TimeManager {
 			System.out.println("The todolist has not been registered!");
 			return;
 		}
+		
 	}
 			
 	public void edittodolist() {
@@ -54,7 +68,7 @@ public class TimeManager {
 		int priority = input.nextInt();
 		for (int i=0; i<times.size(); i++) {
 			Time time =times.get(i);
-			if (time.priority == priority);{
+			if (time.getPriority() == priority);{
 				int num = -1;
 				while (num != 5) {
 					System.out.println("*** Time Info Edit Menu***");
@@ -67,19 +81,23 @@ public class TimeManager {
 					num = input.nextInt();
 					if (num == 1) {
 						System.out.print("Priority");
-						time.priority=input.nextInt();
+						int priority = input.nextInt();
+						time.setPriority(priority);
 					}
 					else if (num == 2) {
 						System.out.print("Todo");
-						time.todo=input.next();
+						String todo=input.next();
+						time.setTodo(todo);
 				}
 					else if (num == 3) {
 						System.out.print("Deadline");
-						time.deadline=input.next();
+						String deadline=input.next();
+						time.setDeadline(deadline);
 				}
 					else if (num == 4) {
 						System.out.print("Memo");
-						time.memo=input.next();
+						String memo=input.next();
+						time.setMemo(memo);
 					}
 					else {
 						continue;
