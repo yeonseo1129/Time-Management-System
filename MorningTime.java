@@ -2,7 +2,7 @@ package timetime;
 
 import java.util.Scanner;
 
-public class MorningTime extends Time {
+public class MorningTime extends Time implements TimeInput {
 	protected String sleepTodo;
 	protected String sleepDeadline;
 

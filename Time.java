@@ -2,7 +2,7 @@ package timetime;
 
 import java.util.Scanner;
 
-public class Time {
+public abstract class Time {
 	protected TodolistKind kind = TodolistKind.Night;
 	protected int priority;
 	protected String todo;
@@ -76,27 +76,7 @@ public class Time {
 		this.memo = memo;
 	}
 
-	public void printInfo() {
-		String skind = "none";
-		switch (this.kind) {
-		case Morning:
-			skind = "6-10";
-			break;
-		case Afternoon:
-			skind = "11-15";
-			break;
-		case Dinner:
-			skind = "16-20";
-			break;
-		case Night:
-			skind = "21-24";
-			break;
-		default:
-
-		}
-		System.out.println("kind:" + skind + "" + "priority:" + priority + " " + "todo:" + todo + " " + "deadline:"
-				+ deadline + " " + "memo:" + memo);
-	}
+	public abstract void printInfo();
 
 	public void geUsertInput(Scanner input) {
 		System.out.print("priority:");

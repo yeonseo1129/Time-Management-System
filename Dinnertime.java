@@ -2,12 +2,12 @@ package timetime;
 
 import java.util.Scanner;
 
-public class Dinnertime extends Time {
-	
+public class Dinnertime extends Time implements TimeInput {
+
 	public Dinnertime(TodolistKind kind) {
 		super(kind);
 	}
-	
+
 	public void geUserInput(Scanner input) {
 		System.out.print("priority:");
 		int priority = input.nextInt();
@@ -35,6 +35,28 @@ public class Dinnertime extends Time {
 		System.out.print("memo:");
 		String memo = input.nextLine();
 		this.setMemo(memo);
+
+	}
+
+	public void printInfo() {
+		String skind = "none";
+		switch (this.kind) {
+		case Morning:
+			skind = "6-10";
+			break;
+		case Afternoon:
+			skind = "11-15";
+			break;
+		case Dinner:
+			skind = "16-20";
+			break;
+		case Night:
+			skind = "21-24";
+			break;
+		default:
+
+		}
+		System.out.println("kind:" + skind + "" + "priority:" + priority + " " + "sleeptodo:" + todo + " "
+				+ "sleepdeadline:" + deadline + " " + "sleepmemo:" + memo);
 	}
 }
-
